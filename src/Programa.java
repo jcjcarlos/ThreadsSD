@@ -13,10 +13,12 @@ public class Programa {
     
         int itemCount;
         ArrayList buffer;
+        Semaphore semaphore;
     
         Programa () {
             itemCount = 0;
-            buffer = new ArrayList(); 
+            buffer = new ArrayList();
+            this.semaphore = new Semaphore();
         }
     
         int compartilhada;
