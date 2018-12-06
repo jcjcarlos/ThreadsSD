@@ -29,12 +29,12 @@ public class Programa {
         } 
         
         public void run() {
-            Consumer c = new Consumer(this);
-            Producer p = new Producer(this);
+            Consumer c = new Consumer(this,this.semaphore);
+            Producer p = new Producer(this,this.semaphore);
             c.start();
             p.start();
-            Consumer c1 = new Consumer(this);
-            Producer p1 = new Producer(this);
+            Consumer c1 = new Consumer(this,this.semaphore);
+            Producer p1 = new Producer(this,this.semaphore);
             c1.start();
             p1.start();
         }

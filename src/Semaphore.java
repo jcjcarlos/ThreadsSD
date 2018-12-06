@@ -21,6 +21,11 @@ public class Semaphore
             catch(InterruptedException _ex) { }
         count--;
     }
+    
+    public synchronized void down(String type) {
+    	System.out.println("Semaphore actioned - " + type);
+    	this.down();
+    }
 
     public synchronized void up()
     {
