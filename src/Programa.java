@@ -18,7 +18,7 @@ public class Programa {
         Programa () {
             itemCount = 0;
             buffer = new ArrayList();
-            this.semaphore = new Semaphore();
+            this.semaphore = new Semaphore(2);
         }
     
         int compartilhada;
@@ -29,12 +29,12 @@ public class Programa {
         } 
         
         public void run() {
-            Consumer c = new Consumer(this,this.semaphore);
-            Producer p = new Producer(this,this.semaphore);
+            Consumer c = new Consumer(this);
+            Producer p = new Producer(this);
             c.start();
             p.start();
-            Consumer c1 = new Consumer(this,this.semaphore);
-            Producer p1 = new Producer(this,this.semaphore);
+            Consumer c1 = new Consumer(this);
+            Producer p1 = new Producer(this);
             c1.start();
             p1.start();
         }

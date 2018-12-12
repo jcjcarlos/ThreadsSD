@@ -16,7 +16,7 @@ public class Semaphore
         while(count == 0) 
             try
             {
-                wait();
+            	wait();   
             }
             catch(InterruptedException _ex) { }
         count--;

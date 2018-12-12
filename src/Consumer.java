@@ -12,10 +12,9 @@ public class Consumer extends Thread {
         Programa a;
         Semaphore semaphore;
 
-        public Consumer(Programa x, Semaphore semaphore) {
+        public Consumer(Programa x) {
 
                a = x;
-               this.semaphore = semaphore;
         }
 
         public void run() {
@@ -24,12 +23,13 @@ public class Consumer extends Thread {
                    while (true) {
                        while (a.itemCount == 0)
                            sleep(100);
-                       this.semaphore.up();
+                       a.semaphore.down();
                        int item;
                        item = (Integer) a.buffer.get(0);
                        a.buffer.remove(0);
                        a.itemCount--;
                        System.out.println("consumer: consuming item "+item);
+                       a.semaphore.up();
                        for (int i =0;i<10000;i++);
                    }
 

@@ -13,7 +13,7 @@ public class Producer extends Thread {
 
         int contador;
         Semaphore semaphore;
-        public Producer(Programa x,Semaphore semaphore) {
+        public Producer(Programa x) {
 
                a = x;
                contador =0;
@@ -25,11 +25,12 @@ public class Producer extends Thread {
                    while (true) {
                        while (a.itemCount == 10)
                            sleep(100);
+                       a.semaphore.down();
                        contador ++;
                        a.buffer.add(contador);
-                       a.itemCount++;
-                       this.semaphore.down();
+                       a.itemCount++;                  
                        System.out.println("produtor: producing item "+contador);
+                       a.semaphore.up();
                        for (int i =0;i<10000;i++);
                    }
 
